@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const routes = require('./routes');
+const projectRoutes = require('./projects.routes');
+const usersRoutes = require('./users.routes');
 const init = require('./initdb');
 
 const app = express();
@@ -9,8 +10,10 @@ const PORT = 4000;
 
 app.use(express.json());
 app.use(cors());
-app.use('/', routes);
+
 app.use('/init', init);
+app.use('/project', projectRoutes);
+app.use('/users', usersRoutes);
 
 app.listen(PORT, (error) => {
     if (error) {

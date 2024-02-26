@@ -3,7 +3,7 @@ const client = require('./db');
 const router = express.Router();
 
 // get all projects
-router.get('/project', async(req, res) => {
+router.get('', async(req, res) => {
     const query = `SELECT * FROM project`;
 
     try {
@@ -16,7 +16,7 @@ router.get('/project', async(req, res) => {
 });
 
 // post one project
-router.post('/project', async(req, res) => {
+router.post('', async(req, res) => {
     let project_name = (req.body.project_name) ? req.body.project_name : null;
     let topic = (req.body.topic) ? req.body.topic : null;
     let deadline = (req.body.deadline) ? req.body.deadline : null;
@@ -33,7 +33,7 @@ router.post('/project', async(req, res) => {
 });
 
 // get one proejct via id
-router.get('/project/:id', async(req, res) => {
+router.get('/:id', async(req, res) => {
     const query = `SELECT * FROM project WHERE project_id=$1`;
 
     try {
@@ -50,7 +50,7 @@ router.get('/project/:id', async(req, res) => {
 });
 
 // update one project
-router.put('/project/:id', async(req, res) => {
+router.put('/:id', async(req, res) => {
     const query = `SELECT * FROM project WHERE project_id=$1`;
 
     let project_id = req.params.id;

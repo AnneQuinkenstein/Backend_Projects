@@ -14,7 +14,7 @@ initdb.get('/', async(req, res) => {
             DROP TABLE IF EXISTS milestones;  
             DROP TABLE IF EXISTS project;
             DROP TABLE IF EXISTS users; 
-            CREATE TABLE users(nickname  VARCHAR(50) PRIMARY KEY,password VARCHAR(300) NOT NULL) ; 
+            CREATE TABLE users(nickname  VARCHAR(50) PRIMARY KEY,password VARCHAR(250) NOT NULL) ; 
             CREATE TABLE project(project_id serial PRIMARY KEY, project_name VARCHAR(50), topic TEXT, deadline DATE NOT NULL DEFAULT CURRENT_DATE);
             CREATE TABLE milestones(milestone_name VARCHAR(50) PRIMARY KEY,status VARCHAR(30),project_id INTEGER REFERENCES project ON DELETE SET NULL) ;
             CREATE TABLE nextSteps(step_id SERIAL PRIMARY KEY,toDo VARCHAR(30) NOT NULL,notes TEXT,context VARCHAR(50),milestone_name VARCHAR(50) REFERENCES milestones ON DELETE SET NULL) ;    
@@ -62,7 +62,6 @@ initdb.get('/', async(req, res) => {
     const milestonequery = format('INSERT INTO milestones(milestone_name, status, project_id) VALUES %L RETURNING *', milestones);
     const nextStepsquery = format('INSERT INTO nextSteps(todo, notes, context, milestone_name) VALUES %L RETURNING *', nextSteps);
     const participatequery = format('INSERT INTO participate(nickname, project_id) VALUES %L RETURNING *', participate);
-
 
 
     try {
