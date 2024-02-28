@@ -35,15 +35,15 @@ router.post('', async(req, res) => {
 // get one proejct via id
 router.get('/:id', async(req, res) => {
     const query = `SELECT * FROM project WHERE project_id=$1`;
-
+  console.log(query)
     try {
-        const id = req.params.id;
-        const result = await client.query(query, [id])
+        const project_id = req.params.id;
+        const result = await client.query(query, [project_id])
         console.log(result)
         if (result.rowCount == 1)
             res.send(result.rows[0]);
         else
-            res.send({ message: "No project found with id=" + id });
+            res.send({ message: "No project found with id=" + project_id });
     } catch (err) {
         console.log("error", err.stack)
     }
@@ -52,7 +52,6 @@ router.get('/:id', async(req, res) => {
 // update one project
 router.put('/:id', async(req, res) => {
     const query = `SELECT * FROM project WHERE project_id=$1`;
-
     let project_id = req.params.id;
     const result = await client.query(query, [project_id])
     if(result.rowCount > 0)
@@ -73,14 +72,14 @@ router.put('/:id', async(req, res) => {
     } else {
         res.status(404)
         res.send({
-            error: "Project with id=" + id + " does not exist!"
+            error: "Project with id=" + project_id + " does not exist!"
         })
     }
 });
 
 
 // delete one project via id
-router.delete('/project/:id', async(req, res) => {
+router.delete('/:id', async(req, res) => {
     const query = `DELETE FROM project WHERE project_id=$1`;
 
     try {
