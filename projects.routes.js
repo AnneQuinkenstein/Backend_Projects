@@ -2,12 +2,28 @@ const express = require('express');
 const client = require('./db');
 const router = express.Router();
 
+
+
 // get all projects
 router.get('', async(req, res) => {
     const query = `SELECT * FROM project`;
 
     try {
         const result = await client.query(query)
+        console.log(result)
+        res.send(result.rows);
+    } catch (err) {
+        console.log(err.stack)
+    }
+});
+
+// get all milestone for a Project
+router.get('/milestones/:id', async(req, res) => {
+    const query = `SELECT * FROM milestones WHERE project_id=$1`;
+    console.log(query)
+    try {
+        const project_id = req.params.id;
+        const result = await client.query(query, [project_id])
         console.log(result)
         res.send(result.rows);
     } catch (err) {
