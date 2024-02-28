@@ -4,11 +4,21 @@ const router = express.Router();
 
 // get all projects
 router.get('', async(req, res) => {
-    const query = `SELECT * FROM project`;
+    const queryProject = `SELECT * FROM project`;
+
+    const queryMilestones = `SELECT * FROM milestones where project_id = project_id`
+
+    async function getMilestones(project_id) {
+        const result = await client.query(queryMilestones, [project_id])
+        console.log("result " + result)
+        return result.rows
+    }
 
     try {
-        const result = await client.query(query)
-        console.log(result)
+        const result = await client.query(queryProject)
+        const projects = result.rows
+        //js - for jedes Projekt die milestones dazupatschen?
+        projects.forEach((project) => console.log("milestones " + getMilestones(project.project_id)))
         res.send(result.rows);
     } catch (err) {
         console.log(err.stack)

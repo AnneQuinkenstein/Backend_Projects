@@ -10,9 +10,8 @@ const PORT = 4000;
 
 app.use(express.json());
 app.use(cors());
-
 app.use('/init', init);
-app.use('/project', projectRoutes);
+app.use('/projects', projectRoutes);
 app.use('/users', usersRoutes);
 
 app.listen(PORT, (error) => {
