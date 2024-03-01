@@ -15,7 +15,7 @@ initdb.get('/', async(req, res) => {
             DROP TABLE IF EXISTS project;
             DROP TABLE IF EXISTS users; 
             CREATE TABLE users(nickname  VARCHAR(50) PRIMARY KEY,password VARCHAR(250) NOT NULL) ; 
-            CREATE TABLE project(project_id serial PRIMARY KEY, project_name VARCHAR(50), topic TEXT, deadline DATE NOT NULL DEFAULT CURRENT_DATE);
+            CREATE TABLE project(project_id serial PRIMARY KEY, project_name VARCHAR(50), topic TEXT, deadline DATE DEFAULT CURRENT_DATE);
             CREATE TABLE milestones(milestone_name VARCHAR(50) PRIMARY KEY,status VARCHAR(30),project_id INTEGER REFERENCES project ON DELETE CASCADE) ;
             CREATE TABLE nextSteps(step_id SERIAL PRIMARY KEY,toDo VARCHAR(30) NOT NULL,notes TEXT,context VARCHAR(50),milestone_name VARCHAR(50) REFERENCES milestones ON DELETE CASCADE) ;    
             CREATE TABLE participate(nickname VARCHAR(20) REFERENCES users ON DELETE CASCADE,project_id INTEGER REFERENCES project ON DELETE CASCADE, PRIMARY KEY (nickname,project_id));
@@ -33,8 +33,8 @@ initdb.get('/', async(req, res) => {
 
     // Befüllen der Tabellen
     const users = [
-        ["dingens", "lkadjliwelj"],
-        ["dingsda", "alkdsfjösdfk"]
+        ["Dingsda", "lkadjliwelj"],
+        ["Reha", "alkdsfjösdfk"]
     ];
 
     const projects = [
@@ -43,8 +43,8 @@ initdb.get('/', async(req, res) => {
     ];
 
     const milestones = [
-        ['Frontend', 'toDo', 1],
-        ['Backend', 'toDo', 1]
+        ['Frontend', 'in Progress', 1],
+        ['Backend', 'done', 1]
         ];
 
     const nextSteps = [
@@ -53,14 +53,14 @@ initdb.get('/', async(req, res) => {
     ];
 
     const participate = [
-        ['dingens', '1'],
-        ['dingsda', '2']
+        ['Dingsda', '1'],
+        ['Reha', '2']
     ];
 
     const responsible = [
-        ['dingens', '1'],
-        ['dingsda', '1'],
-        ['dingens', '2']
+        ['Dingsda', '1'],
+        ['Reha', '1'],
+        ['Dingsda', '2']
     ]
     
     // hierfuer muss pg-format installiert werden (wegen %L):

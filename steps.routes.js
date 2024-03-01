@@ -6,7 +6,7 @@ const router = express.Router();
 
 // get all Steps for a Milestone
 router.get('/:id', async(req, res) => {
-    const query = `select todo, notes, context, nickname from nextsteps NATURAL JOIN (responsible NATURAL JOIN users) where milestone_name=$1`;
+    const query = `select status, todo, notes, context, nickname from milestones NATURAL JOIN (nextsteps NATURAL JOIN (responsible NATURAL JOIN users)) where milestone_name=$1`;
     console.log(query)
     try {
         const project_id = req.params.id;
