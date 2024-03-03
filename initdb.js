@@ -34,12 +34,12 @@ initdb.get('/', async(req, res) => {
     // Befüllen der Tabellen
     const users = [
         ["Dingsda", "lkadjliwelj"],
-        ["Reha", "alkdsfjösdfk"]
+        ["Einar.Hartmann", "alkdsfjösdfk"]
     ];
 
     const projects = [
-        ["Webseite erstellen", "PEAN-Stack Webseite erstellen", "2024-03-26"],
-        ["irgendwas anderes", "Reactive tertiary complexity", "2023-01-20"]
+        ["Webseite erstellen", "Diverse impactful internet solution", "2024-03-26"],
+        ["Versatile systemic Graphical User Interface", "Reactive tertiary complexity", "2025-01-20"]
     ];
 
     const milestones = [
@@ -48,18 +48,20 @@ initdb.get('/', async(req, res) => {
         ];
 
     const nextSteps = [
-        ['Wireframe', 'in wwww.mockflow.com zeichnen', 'internet', 'Frontend'],
-        ['Angular', 'Angluar Boilerplate anlegen', 'computer', 'Frontend']
+        ['orchestrate', 'Clone high-level circuit', 'internet', 'Backend'],
+        ['reintermediate', 'create Angluar Boilerplate for visionary mobile knowledge user', 'computer', 'Frontend'],
+        ['visualize', 'Extended dedicated Frontend', 'computer', 'Frontend'],
+        ['Reintermediate', 'innovate visionary empowering architecture', 'computer', 'Backend']
     ];
 
     const participate = [
         ['Dingsda', '1'],
-        ['Reha', '2']
+        ['Einar.Hartmann', '2']
     ];
 
     const responsible = [
         ['Dingsda', '1'],
-        ['Reha', '1'],
+        ['Einar.Hartmann', '1'],
         ['Dingsda', '2']
     ]
     
