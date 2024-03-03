@@ -25,21 +25,19 @@ router.post('/login', async(req,res) => {
 
 // create new user
 router.post('/register', async(req,res) => {
-    let username = req.body.username;
+    let nickname = req.body.nickname;
     let password = req.body.password;
     let hashPassword = await bcrypt.hash(password, 10);
     console.log('hash : ', hashPassword)
-    let email = req.body.email;
-    let role = req.body.role;
 
-    let check = await client.query('SELECT * FROM users WHERE email = $1', [email])
+    let check = await client.query('SELECT * FROM users WHERE nickname = $1', [nickname])
     if(check.rowCount > 0) {
         res.status(409)
-        res.send({ message: `E-Mail ${email} already exists`})
+        res.send({ message: `Nickname ${nickname} already exists`})
     } else {
-        const query = `INSERT INTO users(username, password, email, role) VALUES ($1, $2, $3, $4) RETURNING *`;
+        const query = `INSERT INTO users(nickname, password) VALUES ($1, $2) RETURNING *`;
 
-        let result = await client.query(query, [username, hashPassword, email, role]);
+        let result = await client.query(query, [nickname, hashPassword]);
         res.status(201)
         res.send(result.rows[0])
     }
