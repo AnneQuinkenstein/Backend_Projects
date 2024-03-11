@@ -2,6 +2,7 @@ const express = require('express');
 const client = require('./db');
 const initdb = express.Router();
 const format = require('pg-format');
+const bcrypt = require('bcrypt')
 
 
 initdb.get('/', async(req, res) => {
@@ -21,7 +22,6 @@ initdb.get('/', async(req, res) => {
             CREATE TABLE participate(nickname VARCHAR(20) REFERENCES users ON DELETE CASCADE,project_id INTEGER REFERENCES project ON DELETE CASCADE, PRIMARY KEY (nickname,project_id));
             CREATE TABLE responsible(nickname VARCHAR(20) REFERENCES users ON DELETE CASCADE,step_id INTEGER REFERENCES nextSteps ON DELETE CASCADE, PRIMARY KEY (nickname,step_id));
             `;
-    //TODO: something with the responsible table doesnt work
 
     try {
         await client.query(queryP)
@@ -32,9 +32,9 @@ initdb.get('/', async(req, res) => {
 
 
     // Befüllen der Tabellen
-    const users = [
-        ["Dingsda", "lkadjliwelj"],
-        ["Einar.Hartmann", "alkdsfjösdfk"]
+    let users = [
+        ["Dingsda", await bcrypt.hash("dasistdasPasswort", 10)],
+        ["Einar.Hartmann", await bcrypt.hash("lkadjliwelj", 10)]
     ];
 
     const projects = [

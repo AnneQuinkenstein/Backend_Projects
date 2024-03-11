@@ -11,6 +11,7 @@ router.post('/login', async(req,res) => {
     let check = await client.query('SELECT * FROM users WHERE nickname = $1', [nickname])
     if(check.rowCount > 0) {
         let user = check.rows[0];
+        console.log("password" + user.password)
         let loginOk = await bcrypt.compare(password, user.password)
         if(loginOk) {
             res.status(200)
@@ -19,9 +20,12 @@ router.post('/login', async(req,res) => {
             res.status(401)
             res.send({ message: 'wrong password'})
         }
+    } else {
+        res.status(400).json({ error: 'username does not exist' });
     }
 
 })
+
 
 // create new user
 router.post('/register', async(req,res) => {
