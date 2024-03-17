@@ -84,7 +84,7 @@ router.put('/:id', async(req, res) => {
             WHERE project_id=$4;`;
         const updateresult = await client.query(updatequery, [project_name, topic, deadline, project_id]);
         console.log(updateresult)
-        res.send({ project_id, project_name, topic, deadline });
+        res.send({ project_id, project_name, topic, deadline});
     } else {
         res.status(404)
         res.send({
