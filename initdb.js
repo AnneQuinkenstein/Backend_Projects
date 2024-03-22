@@ -34,35 +34,53 @@ initdb.get('/', async(req, res) => {
     // Befüllen der Tabellen
     let users = [
         ["Dingsda", await bcrypt.hash("dasistdasPasswort", 10)],
-        ["Einar.Hartmann", await bcrypt.hash("lkadjliwelj", 10)]
+        ["Einar.Hartmann", await bcrypt.hash("passwort", 10)],
+        ["Moshe_Harvey", await bcrypt.hash("bloob", 10)]
     ];
 
     const projects = [
         ["Webseite erstellen", "Diverse impactful internet solution", "2024-03-26"],
-        ["Versatile systemic Graphical User Interface", "Reactive tertiary complexity", "2025-01-20"]
+        ["Versatile systemic Graphical User Interface", "Reactive tertiary complexity", "2025-01-20"],
+        ["envisioneer", "Stand-alone global moderator", "2027-08-18"]
     ];
 
     const milestones = [
-        ['Frontend', 'in Progress', 1],
-        ['Backend', 'done', 1]
+        ['frontend', 'in Progress', 1],
+        ['backend', 'done', 1],
+        ['functionalities', 'in Progress', 1],
+        ['architecture', 'done', 2],
+        ['futureize', 'done', 3]
         ];
 
     const nextSteps = [
-        ['orchestrate', 'Clone high-level circuit', 'internet', 'Backend'],
-        ['reintermediate', 'create Angluar Boilerplate for visionary mobile knowledge user', 'computer', 'Frontend'],
-        ['visualize', 'Extended dedicated Frontend', 'computer', 'Frontend'],
-        ['Reintermediate', 'innovate visionary empowering architecture', 'computer', 'Backend']
+        ['orchestrate', 'Clone high-level circuit', 'internet', 'backend'],
+        ['reintermediate', 'create Angluar Boilerplate for visionary mobile knowledge user', 'computer', 'frontend'],
+        ['visualize', 'Extended dedicated Frontend', 'computer', 'frontend'],
+        ['revolutionize', 'innovate visionary empowering architecture', 'computer', 'backend'],
+        ['harness', 'innovate visionary empowering architecture', 'computer', 'functionalities'],
+        ['reintermediate', 'Team-oriented high-level artificial intelligence', 'computer', 'architecture'],
+        ['implement', 'Fundamental discrete definition', 'computer', 'architecture'],
+        ['orchestrate', 'Compatible multi-tasking solution', 'future', 'functionalities'],
+        ['envisioneer', 'Future-proofed secondary solution', 'future', 'futureize'],
     ];
 
     const participate = [
         ['Dingsda', '1'],
-        ['Einar.Hartmann', '2']
+        ['Einar.Hartmann', '2'],
+        ['Einar.Hartmann', '3']
     ];
 
     const responsible = [
         ['Dingsda', '1'],
         ['Einar.Hartmann', '1'],
-        ['Dingsda', '2']
+        ['Dingsda', '2'],
+        ['Moshe_Harvey', '3'],
+        ['Dingsda', '4'],
+        ['Moshe_Harvey', '5'],
+        ['Dingsda', '5'],
+        ['Dingsda', '6'],
+        ['Dingsda', '7'],
+        ['Dingsda', '8']
     ]
     
     // hierfuer muss pg-format installiert werden (wegen %L):
