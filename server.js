@@ -18,7 +18,6 @@ app.use('/users', usersRoutes);
 app.use('/milestones', milestoneRoutes);
 
 
-
 app.listen(PORT, (error) => {
     if (error) {
         console.log(error);

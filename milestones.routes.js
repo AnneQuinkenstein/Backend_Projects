@@ -3,9 +3,8 @@ const client = require('./db');
 const router = express.Router();
 
 
-
 // get all Steps for a Milestone
-router.get('/:id', async(req, res) => {
+router.get('/:id', async (req, res) => {
     const query = `select status, todo, notes, context, nickname from milestones NATURAL JOIN (nextsteps NATURAL LEFT JOIN (responsible NATURAL JOIN users)) where milestone_name=$1`;
     console.log(query)
     try {
@@ -19,7 +18,7 @@ router.get('/:id', async(req, res) => {
 });
 
 //post one milestone
-router.post('', async(req, res) => {
+router.post('', async (req, res) => {
     let milestone_name = (req.body.milestone_name) ? req.body.milestone_name : null;
     let status = (req.body.status) ? req.body.status : null;
     let project_id = (req.body.project_id) ? req.body.project_id : null;
@@ -35,7 +34,19 @@ router.post('', async(req, res) => {
     }
 });
 
-router.get('', async(req, res) => {
+router.get('', async (req, res) => {
+    const query = `SELECT * FROM milestones`;
+
+    try {
+        const result = await client.query(query)
+        console.log(result)
+        res.send(result.rows);
+    } catch (err) {
+        console.log(err.stack)
+    }
+});
+
+router.get('', async (req, res) => {
     const query = `SELECT * FROM milestones`;
 
     try {

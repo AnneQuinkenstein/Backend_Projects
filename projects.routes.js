@@ -3,9 +3,8 @@ const client = require('./db');
 const router = express.Router();
 
 
-
 // get all projects
-router.get('', async(req, res) => {
+router.get('', async (req, res) => {
     const query = `SELECT * FROM project`;
 
     try {
@@ -18,7 +17,7 @@ router.get('', async(req, res) => {
 });
 
 // get all milestone for a Project
-router.get('/milestones/:id', async(req, res) => {
+router.get('/milestones/:id', async (req, res) => {
     const query = `SELECT * FROM milestones WHERE project_id=$1`;
     console.log(query)
     try {
@@ -32,7 +31,7 @@ router.get('/milestones/:id', async(req, res) => {
 });
 
 // post one project
-router.post('', async(req, res) => {
+router.post('', async (req, res) => {
     let project_name = (req.body.project_name) ? req.body.project_name : null;
     let topic = (req.body.topic) ? req.body.topic : null;
     let deadline = (req.body.deadline) ? req.body.deadline : null;
@@ -49,9 +48,9 @@ router.post('', async(req, res) => {
 });
 
 // get one proejct via id
-router.get('/:id', async(req, res) => {
+router.get('/:id', async (req, res) => {
     const query = `SELECT * FROM project WHERE project_id=$1`;
-  console.log(query)
+    console.log(query)
     try {
         const project_id = req.params.id;
         const result = await client.query(query, [project_id])
@@ -59,19 +58,18 @@ router.get('/:id', async(req, res) => {
         if (result.rowCount == 1)
             res.send(result.rows[0]);
         else
-            res.send({ message: "No project found with id=" + project_id });
+            res.send({message: "No project found with id=" + project_id});
     } catch (err) {
         console.log("error", err.stack)
     }
 });
 
 // update one project
-router.put('/:id', async(req, res) => {
+router.put('/:id', async (req, res) => {
     const query = `SELECT * FROM project WHERE project_id=$1`;
     let project_id = req.params.id;
     const result = await client.query(query, [project_id])
-    if(result.rowCount > 0)
-    {
+    if (result.rowCount > 0) {
         let project = result.rows[0];
         let project_name = (req.body.project_name) ? req.body.project_name : project.project_name;
         let topic = (req.body.topic) ? req.body.topic : project.topic;
@@ -84,7 +82,7 @@ router.put('/:id', async(req, res) => {
             WHERE project_id=$4;`;
         const updateresult = await client.query(updatequery, [project_name, topic, deadline, project_id]);
         console.log(updateresult)
-        res.send({ project_id, project_name, topic, deadline});
+        res.send({project_id, project_name, topic, deadline});
     } else {
         res.status(404)
         res.send({
@@ -95,7 +93,7 @@ router.put('/:id', async(req, res) => {
 
 
 // delete one project via id
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', async (req, res) => {
     const query = `DELETE FROM project WHERE project_id=$1`;
 
     try {
@@ -103,9 +101,9 @@ router.delete('/:id', async(req, res) => {
         const result = await client.query(query, [id])
         console.log(result)
         if (result.rowCount == 1)
-            res.send({ message: "Project with id=" + id + " deleted" });
+            res.send({message: "Project with id=" + id + " deleted"});
         else
-            res.send({ message: "No project found with id=" + id });
+            res.send({message: "No project found with id=" + id});
     } catch (err) {
         console.log(err.stack)
     }

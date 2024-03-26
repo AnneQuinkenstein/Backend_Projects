@@ -5,7 +5,7 @@ const format = require('pg-format');
 const bcrypt = require('bcrypt')
 
 
-initdb.get('/', async(req, res) => {
+initdb.get('/', async (req, res) => {
 
     // Anlegen der Tabellen
     let queryP = `
@@ -50,7 +50,7 @@ initdb.get('/', async(req, res) => {
         ['functionalities', 'in Progress', 1],
         ['architecture', 'done', 2],
         ['futureize', 'done', 3]
-        ];
+    ];
 
     const nextSteps = [
         ['orchestrate', 'Clone high-level circuit', 'internet', 'backend'],
@@ -82,7 +82,7 @@ initdb.get('/', async(req, res) => {
         ['Dingsda', '7'],
         ['Dingsda', '8']
     ]
-    
+
     // hierfuer muss pg-format installiert werden (wegen %L):
     const usersquery = format('INSERT INTO users(nickname, password) VALUES %L RETURNING *', users);
     const projectquery = format('INSERT INTO project(project_name, topic, deadline) VALUES %L RETURNING *', projects);
@@ -106,7 +106,7 @@ initdb.get('/', async(req, res) => {
         console.log("responsible inserted ...")
         res.status(200)
         //TODO: lieber als Object project: project.... als als Array
-        res.send([ usersresult.rows, projectsresult.rows, milestoneresult.rows, nextStepsresult.rows, participatesresult.rows, responsibleresult.rows])
+        res.send([usersresult.rows, projectsresult.rows, milestoneresult.rows, nextStepsresult.rows, participatesresult.rows, responsibleresult.rows])
     } catch (err) {
         console.log(err)
     }
