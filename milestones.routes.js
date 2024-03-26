@@ -10,7 +10,6 @@ router.get('/:id', async (req, res) => {
     try {
         const milestone_name = req.params.id;
         const result = await client.query(query, [milestone_name])
-        console.log(result)
         res.send(result.rows);
     } catch (err) {
         console.log(err.stack)
@@ -27,7 +26,6 @@ router.post('', async (req, res) => {
 
     try {
         const result = await client.query(query, [milestone_name, status, project_id])
-        console.log(res)
         res.send(result.rows[0]);
     } catch (err) {
         console.log(err.stack)
@@ -39,7 +37,6 @@ router.get('', async (req, res) => {
 
     try {
         const result = await client.query(query)
-        console.log(result)
         res.send(result.rows);
     } catch (err) {
         console.log(err.stack)
@@ -51,7 +48,6 @@ router.get('', async (req, res) => {
 
     try {
         const result = await client.query(query)
-        console.log(result)
         res.send(result.rows);
     } catch (err) {
         console.log(err.stack)
@@ -60,11 +56,9 @@ router.get('', async (req, res) => {
 
 router.get('/milestone/:id', async (req, res) => {
     const query = `SELECT * FROM milestones WHERE milestone_name=$1`;
-    console.log(query)
     try {
         const milestone_name = req.params.id;
         const result = await client.query(query, [milestone_name])
-        console.log(result)
         res.send(result.rows[0]);
     } catch (err) {
         console.log(err.stack)

@@ -49,7 +49,6 @@ router.get('', async (req, res) => {
 
     try {
         const result = await client.query(query)
-        console.log(res)
         res.send(result.rows);
     } catch (err) {
         console.log(err.stack)
@@ -63,7 +62,6 @@ router.get('/:id', async (req, res) => {
     try {
         const nickname = req.params.id;
         const result = await client.query(query, [nickname])
-        console.log(result)
         if (result.rowCount == 1)
             res.send(result.rows[0]);
         else

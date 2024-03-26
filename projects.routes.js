@@ -9,7 +9,6 @@ router.get('', async (req, res) => {
 
     try {
         const result = await client.query(query)
-        console.log(result)
         res.send(result.rows);
     } catch (err) {
         console.log(err.stack)
@@ -19,11 +18,9 @@ router.get('', async (req, res) => {
 // get all milestone for a Project
 router.get('/milestones/:id', async (req, res) => {
     const query = `SELECT * FROM milestones WHERE project_id=$1`;
-    console.log(query)
     try {
         const project_id = req.params.id;
         const result = await client.query(query, [project_id])
-        console.log(result)
         res.send(result.rows);
     } catch (err) {
         console.log(err.stack)
@@ -40,7 +37,6 @@ router.post('', async (req, res) => {
 
     try {
         const result = await client.query(query, [project_name, topic, deadline])
-        console.log(res)
         res.send(result.rows[0]);
     } catch (err) {
         console.log(err.stack)
@@ -50,11 +46,9 @@ router.post('', async (req, res) => {
 // get one project via id
 router.get('/:id', async (req, res) => {
     const query = `SELECT * FROM project WHERE project_id=$1`;
-    console.log(query)
     try {
         const project_id = req.params.id;
         const result = await client.query(query, [project_id])
-        console.log(result)
         if (result.rowCount == 1)
             res.send(result.rows[0]);
         else
@@ -81,7 +75,6 @@ router.put('/:id', async (req, res) => {
             deadline = $3
             WHERE project_id=$4;`;
         const updateresult = await client.query(updatequery, [project_name, topic, deadline, project_id]);
-        console.log(updateresult)
         res.send({project_id, project_name, topic, deadline});
     } else {
         res.status(404)
@@ -99,7 +92,6 @@ router.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const result = await client.query(query, [id])
-        console.log(result)
         if (result.rowCount == 1)
             res.send({message: "Project with id=" + id + " deleted"});
         else
