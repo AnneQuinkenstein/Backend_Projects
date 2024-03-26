@@ -7,7 +7,10 @@ You can access the public [REST endpoint](https://backend-projects-8pai.onrender
 or the
 [Postman-Collection](https://documenter.getpostman.com/view/13617236/2sA35A8kXu)
 
-Visit [<public-backend>/init](https://backend-projects-8pai.onrender.com/init) to fill the database.
+Visit [<backend-URL>/init](https://backend-projects-8pai.onrender.com/init) to fill the database. 
+
+Please note that this project uses the free instance of [Render](https://render.com/) for Backend and Database. There might be delays due to inactivity-induced instance spin-down. Keep this in mind when accessing the deployed application. It's recommended to [trigger](https://backend-projects-8pai.onrender.com)  the Backend before using the frontend.
+
 
 
 ## Development Environment
@@ -16,7 +19,7 @@ Visit [<public-backend>/init](https://backend-projects-8pai.onrender.com/init) t
 - Node.js ^18.13.0 || ^20.9.0
 - PostgreSQL 13.4-Database
 
-1. Download this [repository](https://github.com/AnneQuinkenstein/Backend_Projects/archive/refs/heads/main.zip).
+1. Download and unpack this [repository](https://github.com/AnneQuinkenstein/Backend_Projects/archive/refs/heads/main.zip).
 2. Navigate to the project directory in your terminal.
 3. Run `npm install` to install the required node-modules specified in `package.json`. Used Libaries see [package.json](./package.json) dependencies.
 
