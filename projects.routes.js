@@ -47,7 +47,7 @@ router.post('', async (req, res) => {
     }
 });
 
-// get one proejct via id
+// get one project via id
 router.get('/:id', async (req, res) => {
     const query = `SELECT * FROM project WHERE project_id=$1`;
     console.log(query)
